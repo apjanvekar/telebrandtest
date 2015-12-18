@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717063141) do
+ActiveRecord::Schema.define(version: 20151218121320) do
 
   create_table "branches", force: :cascade do |t|
     t.string   "branch_name", limit: 255
@@ -67,17 +67,16 @@ ActiveRecord::Schema.define(version: 20150717063141) do
     t.date     "end_date"
     t.string   "leave_type",              limit: 255
     t.text     "reason_for_leave",        limit: 65535
-    t.string   "status",                  limit: 255,   default: "pending"
+    t.string   "status",                  limit: 255
     t.string   "rejection_reason",        limit: 255
     t.integer  "user_id",                 limit: 4
     t.integer  "no_of_leave_days",        limit: 4
     t.integer  "no_of_holiday",           limit: 4
     t.integer  "leave_without_pay",       limit: 4
     t.date     "remark_date"
-    t.float    "half_day",                limit: 24
     t.date     "apply_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "doctorcert_file_name",    limit: 255
     t.string   "doctorcert_content_type", limit: 255
     t.integer  "doctorcert_file_size",    limit: 4
@@ -88,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150717063141) do
     t.datetime "image_updated_at"
     t.date     "half_day_on_sd"
     t.date     "half_day_on_ed"
+    t.string   "half_day",                limit: 255
   end
 
   create_table "units", force: :cascade do |t|
@@ -122,15 +122,15 @@ ActiveRecord::Schema.define(version: 20150717063141) do
     t.integer  "sl",                     limit: 4
     t.integer  "pl",                     limit: 4
     t.integer  "cl",                     limit: 4
-    t.integer  "presentsl",              limit: 4,   default: 0
-    t.integer  "presentpl",              limit: 4,   default: 0
-    t.integer  "presentcl",              limit: 4,   default: 0
+    t.integer  "presentsl",              limit: 4
+    t.integer  "presentpl",              limit: 4
+    t.integer  "presentcl",              limit: 4
+    t.integer  "esic",                   limit: 4
     t.string   "emp_code",               limit: 255
     t.string   "group",                  limit: 255
     t.string   "branch",                 limit: 255
     t.string   "unit",                   limit: 255
     t.string   "department",             limit: 255
-    t.integer  "esic",                   limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -8,7 +8,7 @@ default: &default
 
 development:
   <<: *default
-  database: adduser_development
+  database: telebrand_development
 
 test:
   <<: *default
@@ -16,6 +16,6 @@ test:
 
 production:
   <<: *default
-  database: adduser_production
+  database: telebrand_production
   username: adduser
   password: <%= ENV['ADDUSER_DATABASE_PASSWORD'] %>
