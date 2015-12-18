@@ -1,0 +1,18 @@
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">Please mention Rejection Reason</h5>
+  </div>
+  <div class="modal-body">
+    <%=form_tag register_rejection_path,:remote=>true do %>
+     <div class="form-group">
+        <label for="exampleInputEmail1">Rejection Reason</label>
+        <%=text_field_tag 'leave_master[rejection_reason]'%>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <%=submit_tag "Save Reason" ,class: "btn btn-primary",data: { confirm: "Are you sure?" }%>
+            <!-- <button class="btn btn-primary">Save Reason</button> -->
+          </div>
+  </div>
+    <%end%>
+  </div>
+  

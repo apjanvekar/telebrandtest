@@ -1,0 +1,24 @@
+</ul>
+<%= form_for(@group,html: {class: 'form-horizontal'})  do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+      <ul>
+	      <% @group.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field form-group">       
+    	<%= f.label :group_name,class: 'col-sm-2 control-label' %>
+   	<div class="col-sm-4">
+   		<%= f.text_field :group_name,class: 'form-control' %>
+  	</div>
+  	</div>
+  	<div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+  		 <%= f.submit "Save", class: 'btn btn-primary'%>
+  	</div>
+  	</div>
+<% end %>

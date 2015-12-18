@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  emp_code: MyString
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  date_of_join: 2015-07-01
+  gender: false
+  leave_start_date: 2015-07-01
+  leave_end_date: 2015-07-01
+  yearly_alocated_sl: 1
+  yearly_alocated_pl: 1
+  yearly_alocated_cl: 1
+  group_id: 1
+  branch_id: 1
+  unit_id: 1
+  department_id: 1
+  avaiable_sl: 1
+  available_pl: 1
+  avaiable_cl: 1
+
+two:
+  emp_code: MyString
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  date_of_join: 2015-07-01
+  gender: false
+  leave_start_date: 2015-07-01
+  leave_end_date: 2015-07-01
+  yearly_alocated_sl: 1
+  yearly_alocated_pl: 1
+  yearly_alocated_cl: 1
+  group_id: 1
+  branch_id: 1
+  unit_id: 1
+  department_id: 1
+  avaiable_sl: 1
+  available_pl: 1
+  avaiable_cl: 1

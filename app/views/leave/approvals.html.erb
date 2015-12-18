@@ -1,0 +1,33 @@
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<table class="table">
+<tr>
+	<th>Leave start Date</th>
+	<th>Leave End date</th>
+	<th>Reason For Leave</th>
+	<th>No Of Days</th>
+	<th>No Of Holidays Between Leave</th>
+	<th>Apply Leave Type</th>
+	<th>Approved Date</th>
+	<th>Status</th>
+</tr>
+
+<%@all_approvals.each do |i|%>
+<tr>
+<td><%=i.start_date%></td>
+<td><%=i.end_date%></td>
+<td><%=i.reason_for_leave%></td>
+<td><%=requestpg_half_day(i.no_of_leave_days.to_f)%></td>
+<td><%=i.no_of_holiday%></td>
+<td><%=i.leave_type%></td>
+<td><%=i.remark_date%></td>
+	<%if i.status == "approve" %>
+		<td><%=image_tag "approve.png"%></td>
+	<%elsif i.status == "pending" and i.rejection_reason==nil%>
+		<td><%=image_tag "pending.png"%></td>
+	<%elsif i.status == "reject" and i.rejection_reason!=nil%>	
+	   	<td><%=image_tag "reject.png"%></td>
+	<%end%>
+</tr>
+<%end%>
+
+</table>

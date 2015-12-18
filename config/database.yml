@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: 
+  host: localhost
+
+development:
+  <<: *default
+  database: adduser_development
+
+test:
+  <<: *default
+  database: adduser_test
+
+production:
+  <<: *default
+  database: adduser_production
+  username: adduser
+  password: <%= ENV['ADDUSER_DATABASE_PASSWORD'] %>

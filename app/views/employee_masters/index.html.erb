@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Employee Masters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Emp code</th>
+      <th>First name</th>
+      <th>Middle name</th>
+      <th>Last name</th>
+      <th>Date of join</th>
+      <th>Gender</th>
+      <th>Leave start date</th>
+      <th>Leave end date</th>
+      <th>Yearly alocated sl</th>
+      <th>Yearly alocated pl</th>
+      <th>Yearly alocated cl</th>
+      <th>Group</th>
+      <th>Branch</th>
+      <th>Unit</th>
+      <th>Department</th>
+      <th>Avaiable sl</th>
+      <th>Available pl</th>
+      <th>Avaiable cl</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employee_masters.each do |employee_master| %>
+      <tr>
+        <td><%= employee_master.emp_code %></td>
+        <td><%= employee_master.first_name %></td>
+        <td><%= employee_master.middle_name %></td>
+        <td><%= employee_master.last_name %></td>
+        <td><%= employee_master.date_of_join %></td>
+        <td><%= employee_master.gender %></td>
+        <td><%= employee_master.leave_start_date %></td>
+        <td><%= employee_master.leave_end_date %></td>
+        <td><%= employee_master.yearly_alocated_sl %></td>
+        <td><%= employee_master.yearly_alocated_pl %></td>
+        <td><%= employee_master.yearly_alocated_cl %></td>
+        <td><%= employee_master.group_id %></td>
+        <td><%= employee_master.branch_id %></td>
+        <td><%= employee_master.unit_id %></td>
+        <td><%= employee_master.department_id %></td>
+        <td><%= employee_master.avaiable_sl %></td>
+        <td><%= employee_master.available_pl %></td>
+        <td><%= employee_master.avaiable_cl %></td>
+        <td><%= link_to 'Show', employee_master %></td>
+        <td><%= link_to 'Edit', edit_employee_master_path(employee_master) %></td>
+        <td><%= link_to 'Destroy', employee_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Employee master', new_employee_master_path %>

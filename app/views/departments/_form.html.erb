@@ -1,0 +1,26 @@
+<%= form_for(@department,html: {class: 'form-horizontal'}) do |f| %>
+  <% if @department.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@department.errors.count, "error") %> prohibited this department from being saved:</h2>
+
+      <ul>
+      <% @department.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <div class="field form-group">       
+    		<%= f.label :department_name,class: 'col-sm-2 control-label' %>
+      <div class="col-sm-4">
+   			<%= f.text_field :department_name,class: 'form-control' %>
+   	  </div>
+  	  </div>
+
+     <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <%= f.submit "Save", class: 'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>

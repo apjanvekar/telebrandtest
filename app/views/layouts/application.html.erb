@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+<head>
+  <title>Leave Management System</title>
+ 
+  <%= stylesheet_link_tag 'application','goalProgress','jquery-ui',media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application','goalProgress','jquery.min','goalProgress.min', 'http://code.jquery.com/ui/1.10.3/jquery-ui.js','data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id ="maindiv">
+<div id = "header">
+	<div class="header1">
+		<%=image_tag "create_thumb.png"%>
+	</div>
+	<div class="c7">
+  	 <% if user_signed_in? %>
+           Signed in as: <%= "#{current_user.email} as #{current_user.role}" %>
+    <%end%>         
+   </div>
+	</div>
+	
+<div id="wrapper">
+  <% [:error, :alert].each do |level| %>
+        <% unless flash[level].blank? %>
+          <div class="<%= flash_class(level) %>">
+            <%= content_tag :span, flash[level] %>
+          </div>
+        <% end %>
+      <% end %>
+ <% if user_signed_in? %>
+     <% if current_user.HRAdmin? %>
+         <%= render :partial=>"layouts/hradmin" %>
+      <%elsif current_user.Manager?%>
+        <%= render :partial=>"layouts/manager" %>
+      <%elsif current_user.ImmediateManager?%>
+        <%= render :partial=>"layouts/immmanager" %>
+      <%elsif current_user.Employee?%>
+      <%= render :partial=>"layouts/employee" %>
+    <%end%>
+     
+  <%end%>    
+</div>  
+
+<div id="content">
+<div class = "pageheader">
+<%= @page_title%>
+</div>
+
+</div>
+<div class ="data_content">
+    <%= yield %>
+</div>
+</div>
+
+<div id="footer">
+
+</div>
+</div>
+</body>
+</html>

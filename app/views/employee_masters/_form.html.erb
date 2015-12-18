@@ -1,0 +1,89 @@
+<%= form_for(@employee_master) do |f| %>
+  <% if @employee_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee_master.errors.count, "error") %> prohibited this employee_master from being saved:</h2>
+
+      <ul>
+      <% @employee_master.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :emp_code %><br>
+    <%= f.text_field :emp_code %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :middle_name %><br>
+    <%= f.text_field :middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_join %><br>
+    <%= f.date_select :date_of_join %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.check_box :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :leave_start_date %><br>
+    <%= f.date_select :leave_start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :leave_end_date %><br>
+    <%= f.date_select :leave_end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :yearly_alocated_sl %><br>
+    <%= f.number_field :yearly_alocated_sl %>
+  </div>
+  <div class="field">
+    <%= f.label :yearly_alocated_pl %><br>
+    <%= f.number_field :yearly_alocated_pl %>
+  </div>
+  <div class="field">
+    <%= f.label :yearly_alocated_cl %><br>
+    <%= f.number_field :yearly_alocated_cl %>
+  </div>
+  <div class="field">
+    <%= f.label :group_id %><br>
+    <%= f.number_field :group_id %>
+  </div>
+  <div class="field">
+    <%= f.label :branch_id %><br>
+    <%= f.number_field :branch_id %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_id %><br>
+    <%= f.number_field :unit_id %>
+  </div>
+  <div class="field">
+    <%= f.label :department_id %><br>
+    <%= f.number_field :department_id %>
+  </div>
+  <div class="field">
+    <%= f.label :avaiable_sl %><br>
+    <%= f.number_field :avaiable_sl %>
+  </div>
+  <div class="field">
+    <%= f.label :available_pl %><br>
+    <%= f.number_field :available_pl %>
+  </div>
+  <div class="field">
+    <%= f.label :avaiable_cl %><br>
+    <%= f.number_field :avaiable_cl %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<%user_data = User.find(current_user.id)%>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('#sl').goalProgress({
+				goalAmount: "<%=user_data.sl%>",
+				currentAmount: "<%=cal_sl(user_data.id)%>",
+				textBefore: 'Taken SL:'
+				
+			});
+		});
+		$(document).ready(function(){
+			$('#pl').goalProgress({
+				goalAmount: "<%=user_data.pl%>",
+				currentAmount: "<%=cal_pl(user_data.id)%>",
+				textBefore: 'Taken PL:'
+				
+			});
+		});
+		$(document).ready(function(){
+			$('#cl').goalProgress({
+				goalAmount: "<%=user_data.cl%>",
+				currentAmount: "<%=cal_cl(user_data.id)%>",
+				textBefore: 'Taken CL:'	
+				
+			});
+		});
+	</script>
+
+			<p>
+				You have Taken:<%=cal_sl(user_data.id)%> SL leaves out of <%=user_data.sl%>
+			<div id="sl"></div>
+			</p>
+			
+			<p>
+			You have Taken:<%=cal_pl(user_data.id)%> PL leaves out of <%=user_data.pl%>
+			<div id="pl"></div>
+			</p>
+
+			<p>
+			You have Taken:<%=cal_cl(user_data.id)%> CL leaves out of <%=user_data.cl%>
+			<div id="cl"></div>
+			</p>
+
+		

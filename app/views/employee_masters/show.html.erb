@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Emp code:</strong>
+  <%= @employee_master.emp_code %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @employee_master.first_name %>
+</p>
+
+<p>
+  <strong>Middle name:</strong>
+  <%= @employee_master.middle_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @employee_master.last_name %>
+</p>
+
+<p>
+  <strong>Date of join:</strong>
+  <%= @employee_master.date_of_join %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @employee_master.gender %>
+</p>
+
+<p>
+  <strong>Leave start date:</strong>
+  <%= @employee_master.leave_start_date %>
+</p>
+
+<p>
+  <strong>Leave end date:</strong>
+  <%= @employee_master.leave_end_date %>
+</p>
+
+<p>
+  <strong>Yearly alocated sl:</strong>
+  <%= @employee_master.yearly_alocated_sl %>
+</p>
+
+<p>
+  <strong>Yearly alocated pl:</strong>
+  <%= @employee_master.yearly_alocated_pl %>
+</p>
+
+<p>
+  <strong>Yearly alocated cl:</strong>
+  <%= @employee_master.yearly_alocated_cl %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @employee_master.group_id %>
+</p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @employee_master.branch_id %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @employee_master.unit_id %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @employee_master.department_id %>
+</p>
+
+<p>
+  <strong>Avaiable sl:</strong>
+  <%= @employee_master.avaiable_sl %>
+</p>
+
+<p>
+  <strong>Available pl:</strong>
+  <%= @employee_master.available_pl %>
+</p>
+
+<p>
+  <strong>Avaiable cl:</strong>
+  <%= @employee_master.avaiable_cl %>
+</p>
+
+<%= link_to 'Edit', edit_employee_master_path(@employee_master) %> |
+<%= link_to 'Back', employee_masters_path %>

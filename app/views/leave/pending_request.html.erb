@@ -1,0 +1,59 @@
+<table class="table">
+<tr>
+	<th>Employee Name</th>
+	<th>Leave start Date</th>
+	<th>Leave End date</th>
+	<th>Reason For Leave</th>
+	<th>No Of Days</th>
+	<th>No Of Holidays Between Leave</th>
+	<th>Apply Leave Type</th>
+	<th>Present SL</th>
+	<th>Present PL</th>
+	<th>Present CL</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<%@report.each do |i|%>
+<%@all_data = LeaveMaster.where("user_id=?",i).all %>
+	<%@all_data.each do |leave_data|%>
+		<%if leave_data!=nil%>
+		<%user_data = User.where("id=?",i).first%>
+	<tr>
+		<td><%=user_data.name%></td>
+		<td><%=leave_data.start_date%></td>
+		<td><%=leave_data.end_date%></td>
+		<td><%=leave_data.reason_for_leave%></td>
+		<td><%=requestpg_half_day(leave_data.no_of_leave_days.to_f)%></td>
+		<td><%=leave_data.no_of_holiday%></td>
+		<td><%=leave_data.leave_type%></td>
+		<td><%=sl_chk(user_data.presentsl,user_data.id)%></td>
+		<td><%=pl_chk(user_data.presentpl,user_data.id)%></td>
+		<td><%=cl_chk(user_data.presentcl,user_data.id)%></td>
+			<%if leave_data.rejection_reason ==nil and leave_data.status == "pending"%>
+				<td><%=link_to "Approve",approve_leave_path(:rid=>leave_data.id,:ltype=>leave_data.leave_type,:actual_days=>leave_data.no_of_leave_days,:uid=>leave_data.user_id),:data => {:confirm => 'You really want to approve?'},:class=> "btn btn-success"%></td>
+				<td><%=link_to "Reject",reject_leave_path(leave_data.id),:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', :class => "btn btn-danger ", 'data-type' => "html"%></td>
+			<%elsif leave_data.rejection_reason !=nil and leave_data.status == "reject"%>
+				<td><a href="#" data-toggle="tooltip" title="Rejection Reason:<%=leave_data.rejection_reason%> |Rejectedt on date <%=leave_data.remark_date.strftime("%d-%m-%Y")%>"><h4>Rejected</h4></a></td>
+				<td></td>
+			<%elsif leave_data.rejection_reason ==nil and leave_data.status == "approve"%>
+				<td><a href="#" data-toggle="tooltip" title="<%=leave_data.status.capitalize%>d on date <%=leave_data.remark_date.strftime("%d-%m-%Y")%>"><h4>Approved</h4></a></td>
+				<td></td>
+			<%end%>
+	
+	</tr>
+	<%end%>
+<%end%>	
+<%end%>
+</table>
+
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            	<%=render partial: 'reject_form' %>
+                            </div>
+                        </div>
+                    </div>
+
+
+

@@ -1,0 +1,186 @@
+
+<script>
+ $(function(){
+     $('.datepicker').datepicker({showAnim: "fadeIn",
+      dateFormat: 'dd-mm-yy'
+   });
+     
+  })
+ </script>
+    
+    <ul class="breadcrumb">
+
+        <li><%=link_to "Setting",admin_setting_path%></li>
+
+        <li><%=link_to "Employee Master",users_path%></a></li>
+
+        <li class="active">Add employee</li>
+
+    </ul>
+
+
+<div class="panel panel-default">
+   <div class="panel-heading">Upload Employee data in CSV format</div>
+   
+   <%if params[:flash]!=nil%>
+     <script>
+       alert("<%=params[:flash][:success]%>");
+      </script> 
+    <%end%> 
+  <div class="panel-body">
+    <%=form_tag(import_data_users_path,html: {class: 'form-horizontal'},:multipart => true) do %>
+        <div class="row">
+        <div class="col-sm-4"><%=file_field_tag "file" %></div>
+        <div class="col-sm-4"><%= submit_tag 'Import'%></div>
+        <div class="col-sm-4"><%=link_to "Download Sample CSV",:controller=>"users",:action=>"sample_csv"%></div>
+      </div>
+    <%end%>
+  </div>
+</div>
+
+<%= form_for(@user,html: {class: 'form-horizontal'}) do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field form-group">      
+        <%=f.label :Full_Name ,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%= f.text_field :firstname,:placeholder=>"Firstname",class: 'form-control' %>
+        </div>
+        <div class="col-xs-2">
+          <%= f.text_field :middlename,:placeholder=>"Middlename",class: 'form-control' %>
+        </div>
+        <div class="col-xs-2">
+          <%=f.text_field :lastname ,:placeholder=>"Lastname",class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="field form-group">      
+        <%= f.label :Allotment_Of_Leaves,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%=f.number_field :sl ,:placeholder=>"Sick Leave",class: 'form-control' %>
+        </div>
+        <div class="col-xs-2">
+          <%=f.number_field :pl,:placeholder=>"Personal Leave",class: 'form-control' %>
+        </div>
+        <div class="col-xs-2">
+          <%=f.number_field :cl,:placeholder=>"Casual Leave",class: 'form-control' %>
+        </div>
+      </div>
+
+       <div class="field form-group">      
+        <%= f.label :Leave_Period,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%= f.text_field :leave_start_date,:placeholder=>"Start Date",:class => 'datepicker'%>
+        </div>
+         <div class="col-xs-2">
+          <%= f.text_field :leave_end_date,:placeholder=>"End Date",:class => 'datepicker'%>
+        </div>
+      </div>
+
+      <div class="field form-group">      
+        <%= f.label :Date_of_Join,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%= f.text_field :doj,:placeholder=>"DoJ",:class => 'datepicker'%>
+        </div>
+      </div>
+
+      <div class="field form-group">      
+        <%= f.label :Role,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+           <%=  f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},:prompt=>"Please Select Role",class: 'form-control') %>
+        </div>
+      </div> 
+     
+
+      <div class="field form-group">      
+        <%= f.label :Employee_Code,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%= f.text_field :emp_code,class: 'form-control' %>
+        </div>
+      </div>  
+      
+     
+      
+
+      <div class="field form-group">      
+        <%= f.label :Reporting_Managers,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%=collection_select(:report_to1,:id,User.all,:id,:name,{:prompt=>"Select Reporting Head1"},class: 'form-control')%>
+        </div>
+        <div class="col-xs-2">
+          <%=collection_select(:report_to2,:id,User.all,:id,:name,{:prompt=>"Select Reporting Head2"},class: 'form-control')%>
+        </div>
+      </div>
+
+      
+
+
+      <div class="field form-group">      
+        <%= f.label :Gender,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%=  f.select(:gender, User.genders.keys.map {|gender| [gender.titleize,gender]},:prompt=>"Please Select Gender",class: 'form-control') %>
+        </div>
+      </div>
+
+     
+      
+      
+      
+     
+      <div class="field form-group">      
+        <%= f.label :email ,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-4">
+          <%= f.email_field :email,class: 'form-control' %>
+        </div>
+      </div>    
+
+      <div class="field form-group">      
+        <%= f.label :password, "Password",class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%=f.password_field :password,:placeholder=>"password",class: 'form-control' %>
+        </div>
+        <div class="col-xs-2">
+          <%= f.password_field :password_confirmation,:placeholder=>"Confirm password",class: 'form-control' %>
+        </div>
+      </div>    
+
+      
+      <div class="field form-group">      
+        <%=f.label :Select_Sector,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%=collection_select(:user,:group,Group.all,:group_name,:group_name,{:prompt=>"Select Group"},class: 'form-control') %>
+        </div>
+        <div class="col-xs-2">
+          <%=collection_select(:user,:branch,Branch.all,:branch_name,:branch_name,{:prompt=>"Select Branch"},class: 'form-control') %>
+        </div>
+        <div class="col-xs-2">
+          <%=collection_select(:user,:unit,Unit.all,:unit_name,:unit_name,{:prompt=>"Select unit"},class: 'form-control') %>
+        </div>
+        <div class="col-xs-3">
+          <%=collection_select(:user,:department,Department.all,:department_name,:department_name,{:prompt=>"Please select department"},class: 'form-control') %>
+        </div>
+      </div>    
+
+       
+       <div class="field form-group">      
+        <%=f.label :ESIC ,class: 'col-sm-2 control-label' %>
+        <div class="col-xs-2">
+          <%=f.check_box :esic,class: 'form-control'%>
+        </div>
+      </div>    
+
+      <div class="actions form-group">
+    <div class="col-xs-2">
+      <%= f.submit "Register Employee", class: 'btn btn-primary'  %>
+    </div>
+  </div>
+  <% end %>

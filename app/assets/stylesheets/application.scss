@@ -1,0 +1,180 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+#maindiv{
+width:100%;
+height:80%;
+} 
+body{
+font-family: Arial, Helvetica, sans-serif ;
+}
+#header{
+	width: 100%;
+}
+.header1{
+padding:0px 0px 0px 400px;
+}
+.c7{
+	position: absolute; 
+	width: 135px; 
+	height: 54px;
+ 	z-index: 1; 
+	left: 900px; 
+	top: 6px;
+}
+.pageheader{
+	position: absolute; 
+	width: 90%;
+	 height: 60px;
+	  z-index: 1; 
+	  left:50px;
+	   top: 200px; 
+	   /*background-color: #808000;*/
+	   border-bottom: 2px #21517B solid;
+	   font-size:24px;
+	   font-weight:bold;
+}
+.data_content{
+padding	:0px 0px 100px 0px;
+margin-left:70px;
+width:85%;
+}
+#menu{
+	height: 70px;
+	width: 100%;
+	background-color: #9CDCFF;
+}
+#content{
+	height: 100%;
+	width: 100%;
+	margin-top: 120px;
+}
+#footedr{
+	margin-top: 20px;
+	height: 20px;
+	width: 1450px;
+	background-color: red;
+}
+#wrapper{
+display:-webkit-flex;
+-webkit-justify-content:center;
+display:flex;
+justify-content:center;
+background-color: #ffffe0;
+border: 1px solid #F79218;
+margin-top:5px;
+height:70px;
+width: 100%;
+color: white;
+font-size: 12px;
+}
+#wrapper div{
+-webkit-flex:1;
+flex:1;
+}
+#admin
+{
+display:-webkit-flex;
+-webkit-justify-content:center;
+display:flex;
+justify-content:center;
+width: 400px;
+margin-left: 100px;
+}
+#calendar td,
+#calendar th {
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #999;
+}
+
+#calendar th {
+  background: #DDD;
+  color: #666;
+  text-align: center;
+  width: 14.2857142857143%;
+}
+
+#calendar td {
+  background: #FFF;
+  color: #777;
+  height: 80px;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+#calendar .notmonth {
+  color: #CCC;
+}
+
+#calendar #month {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#calendar #month a, #calendar #month a:hover {
+  text-decoration: none;
+  padding: 0 10px;
+  color: #999;
+}
+
+#calendar .today {
+  background-color: #D7F2FF;
+}
+
+#calendar ul {
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+#calendar li {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  text-align: center;
+}
+.mainsetting{
+	position: absolute; 
+	width: 628px; 
+	height: 321px; 
+	z-index: 1;
+}
+.s1{
+	position: absolute; 
+	width: 175px; 
+	height: 46px; 
+	z-index: 1; 
+	left: 112px; 
+	top: 21px;
+}
+.s2{
+	position: absolute; 
+	width: 175px; 
+	height: 46px;
+	 z-index: 1; 
+	 left: 376px; 
+	 top: 21px;
+}
+.s3{
+	position: absolute;
+	 width: 175px;
+	  height: 46px; 
+	  z-index: 1;
+	   left: 111px;
+	    top: 133px;
+}
+.s4{
+	position: absolute; 
+	width: 175px; 
+	height: 46px; 
+	z-index: 1; 
+	left: 377px; 
+	top: 131px;
+}
+ .bs-example{
+    	margin: 20px;
+	width:400px;
+    }

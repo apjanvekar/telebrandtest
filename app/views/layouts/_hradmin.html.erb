@@ -1,0 +1,21 @@
+          <div id="c1">
+             <%=link_to(image_tag("dashboard.png",:align=> "center",:color=>"black")+"Dashboard",leave_summary_path)%>        
+          </div>
+          <div id="c2">
+              <%=link_to(image_tag("apply leave.png",:align=> "center")+"My Leave",apply_leave_path)%>
+          </div>
+          <div id="c3">
+              <%=link_to(image_tag("my leave.png",:align=> "center")+"My Approvals",my_approvals_path)%>
+          </div>
+                 <div id="c5">
+              <%=link_to(image_tag("mnthview.png",:align=> "center")+"MonthView",calender_view_path)%>
+          </div>
+            <div id="c6">
+            <%=link_to(image_tag("settings.png",:align=> "center")+"Seetings",admin_setting_path)%>
+          </div>
+            <div id="c7">
+            <%=link_to(image_tag("report1.png",:align=> "center")+"Report",hr_report_path)%>
+          </div>
+          <div id="c8">
+              <%=link_to(image_tag("logout.png",:align=> "center")+"Log Out",destroy_user_session_path, :method => 'delete', :confirm => 'Are you sure?')%>
+          </div>

@@ -1,0 +1,15 @@
+<div id="calendar">
+	<%=calendar do |date|%>
+		<%= date.day%>
+		<%if @leave_by_date[date]%>
+		<ul>
+			<%@leave_by_date[date].each do |leave| %>
+				<h4><b><li style="color:red">End On:<%=leave.end_date%></li></b></h4>
+				<h4><b><li style="color:red">leave Reason:<%=leave.reason_for_leave%></li></b></h4>
+				<h4><b><li style="color:red">leave Type:<%=leave.leave_type%></li></b></h4>
+			<%end%>
+		</ul>
+		<%end%>
+	<%end%>
+</div>
+

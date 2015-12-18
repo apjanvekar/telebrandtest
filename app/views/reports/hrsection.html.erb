@@ -1,0 +1,19 @@
+<style type="text/css">
+fieldset {border:1px solid black}
+legend {
+  padding: 0.2em 0.5em;
+  border:1px solid green;
+  color:green;
+  font-size:90%;
+  text-align:left;
+  }
+</style>
+<fieldset>
+  <legend>REPORT SECTION</legend><br/>
+  <center><%=form_tag(overall_path) do %>
+  	<p>Start Date:<%=date_select("report", "start_date", start_year: 1995)%></p></br>
+  	<p>End Date:<%=date_select("report", "end_date", start_year: 1995)%></p></br>
+  	<p><%=image_submit_tag("download_pdf.png")%></p></br>
+  	</center>
+  <% end -%>
+  </fieldset>

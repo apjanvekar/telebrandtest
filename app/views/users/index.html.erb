@@ -1,0 +1,56 @@
+<ul class="breadcrumb">
+        <li><%=link_to "Setting",admin_setting_path%></li>
+        <li class="active">Employee Master</li>
+  </ul>
+
+<div class="row">
+    <div class="col-sm-3" style="float:left;margin-left:10px;">
+    <!-- <button type="button" class="btn btn-info">
+      <span class="glyphicon glyphicon-search"></span<%#=link_to "search"%>
+    </button>
+     <input type="text" placeholder="Enter Employee code"> -->
+     <%=form_tag users_path,:method=>"get" do %>
+      <%=text_field_tag :search,params[:search],:placeholder=>"Employee Code"%>
+     <%=submit_tag "Search",:name=>nil,:class => "btn btn-warning btn-mini", "data-disable-with"=> "Just a moment..."%>
+      <%end%>
+    </div>
+    <div class="col-xs-2" style="float:left;margin-left:700px;">
+    <%= link_to 'Register Employee', new_user_path,class: "btn btn-success" %>
+    </div>
+  </div>
+
+ <hr></hr>
+<center><table class="table">
+  <thead>
+    <tr>
+      <th>Employee Code</th>
+      <th> Employee Name</th>
+      <th> Department Name</th>
+      <th> Group Name</th>
+      <th> Unit Name</th>
+      <th> Branch Name</th>
+      <th>Date Of Joining</th>
+      <th>Role Assigned</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%=user.emp_code%></td>
+        <td><%=user.name%></td>
+        <td><%=user.department%></td>
+        <td><%=user.group%></td>
+        <td><%=user.unit%></td>
+        <td><%=user.branch%></td>
+        <td><%=user.doj%></td>
+       <td><%=user.role%></td>
+        <td><%= link_to 'Edit', edit_user_path(user),class: "btn btn-success" %></td>
+          <td><%= link_to 'Delete', user_path(user), :method => 'delete', :confirm => 'Are you sure?' ,class: "btn btn-danger"%> </td>
+          <td><%= link_to 'Leave Card',leave_card_path(format:"pdf",:emp_id=>user.id),class: "btn btn-warning"%> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table></center> 
+

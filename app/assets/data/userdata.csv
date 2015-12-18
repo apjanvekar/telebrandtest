@@ -1,0 +1,2 @@
+email,password,password_confirmation,firstname,middlename,lastname,doj,role,report_to1,report_to2,gender,leave_start_date,leave_end_date,sl,pl,cl,emp_code,group,branch,unit,department,esic
+ror2@gmail.com,admin@123,admin@123,Shammy,,Nair,01-01-2014,Employee,1,2,Male,01-06-2014,31-12-2014,12,30,12,5,xxx,Thane,Lokmanya nAgar,Software,no

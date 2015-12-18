@@ -1,0 +1,129 @@
+<script>
+ $(function(){
+     $('.datepicker').datepicker({showAnim: "fadeIn",
+      dateFormat: 'dd-mm-yy'
+   });
+     
+  })
+
+$( document ).ready(function() {
+  document.getElementById("sd").style.display = "none";
+  document.getElementById("ed").style.display = "none";
+  // document.getElementById('attach_sl_doc').style.display = "none";
+});
+  
+function test()
+{
+      var hdchk = document.getElementById("leave_master_half_day").checked;
+      var std = document.getElementById("leave_master_start_date").value;
+      var edt = document.getElementById("leave_master_end_date").value;
+      if (hdchk==true && std!=edt) 
+      {
+        document.getElementById('sd').style.display = "block";
+        document.getElementById('ed').style.display = "block";
+      }
+      else
+      {
+        document.getElementById('sd').style.display = "none";
+        document.getElementById('ed').style.display = "none";
+      }
+      
+}
+function leave_select()
+{
+  var e = document.getElementById("leave_master_leave_type");
+  var strUser = e.options[e.selectedIndex].value;
+  if (strUser == "SL")
+  {
+    document.getElementById('attach_sl_doc').style.display = "block";
+  }
+  else
+  {
+   document.getElementById('attach_sl_doc').style.display = "none"; 
+  }
+}
+</script>
+<% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<p align="right"><%= link_to 'My Leave Card',user_card_path(format:"pdf",:emp_id=>current_user.id),class: "btn btn-warning"%></p>
+<%=form_for(@leave,html: {class: 'form-horizontal'})  do |f| %>
+  <% if @leave.errors.any? %>
+    <div class="panel panel-danger">
+    <div class="panel-heading">Following Error Occurs during applying leave-</div>
+    <div class="panel-body">
+      <% @leave.errors.full_messages.each do |msg| %>
+             <li><%= msg %></li>
+        <%end%>
+    </div>
+  </div>
+<% end %>
+
+  <div class="field form-group">
+    <%= f.label :start_Date, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :start_date, :placeholder=>"Start Date",:class => 'datepicker'%>
+    </div>
+  </div>
+
+   <div class="field form-group">
+    <%= f.label :end_date, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :end_date,:placeholder=>"End Date",:class => 'datepicker'%>
+    </div>
+  </div>
+
+ <div class="field form-group">
+  <%=f.label :Half_Day, class: 'col-sm-2 control-label' %>
+  <div class="col-sm-10">
+    <%=f.check_box :half_day,:onclick=>"test()"%>(check it for half day)
+    </div>
+  </div>
+   <div class="field form-group" id="sd">
+  <%=f.label :on_start_date, class: 'col-sm-2 control-label' %>
+  <div class="col-sm-10">
+    <%=f.radio_button :half_day_on_sd,:Y%>(check it for half day on start date)
+    </div>
+  </div>
+   <div class="field form-group" id="ed">
+  <%=f.label :On_end_date, class: 'col-sm-2 control-label' %>
+  <div class="col-sm-10">
+    <%=f.radio_button :half_day_on_ed,:Y%>(check it for half day on end date)
+    </div>
+  </div>
+
+   <div class="field form-group">
+    <%=f.label :Leave_type,class: 'col-sm-2 control-label'%>
+    <div class="col-sm-10">
+      <%= f.select :leave_type, options_for_select([["Please Select leave type", ""],["Sick Leave(SL)","SL"],["Casual Leave(CL)","CL"],["Personal Leave(PL)","PL"],["Accidental Leave","AL"],["Matirnity Leave","ML"],["Paternity leave","PTL"]]),:class => 'genForm_dropBox' %>
+    </div>
+   </div>
+   
+  <div class="field form-group">
+    <%=f.label :available_leaves, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%=f.label :Personal_Leave%>(PL):
+      <%=onpage_pl_leave(current_user.id)%>/
+      <%=f.label :Casual_Leave%>(CL):
+      <%=onpage_cl_leave(current_user.id)%>/
+      <%=f.label :Sick_Leave%>(SL):
+      <%=onpage_sl_leave(current_user.id)%>
+    </div>
+  </div>
+  
+ 
+   <div class="field form-group">
+    <%= f.label :Reason_For_leave, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area :reason_for_leave, class: 'form-control' %>
+    </div>
+  </div>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<%= f.hidden_field :status, :value => "pending" %>
+  <%= f.hidden_field :apply_date, :value =>Time.now.strftime("%Y-%m-%d")%>
+	<div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Submit Leave Application Request", class: 'btn btn-primary'  %>
+    </div>
+  </div>
+<%end%>
